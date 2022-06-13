@@ -1,14 +1,13 @@
 from django.db import models
 
 
-class Species(models.Model):
-   name = models.CharField(max_length=100)
-   classification = models.CharField(max_length=100)
-   language = models.CharField(max_length=100)
+class Category(models.Model):
+    title = models.CharField(max_length=100)
 
 
-class Person(models.Model):
-   name = models.CharField(max_length=100)
-   birth_year = models.CharField(max_length=10)
-   eye_color = models.CharField(max_length=10)
-   species = models.ForeignKey(Species, on_delete=models.DO_NOTHING)
+class Article(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    author = models.CharField(max_length=100)
+    register_date = models.DateTimeField(auto_now_add=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
